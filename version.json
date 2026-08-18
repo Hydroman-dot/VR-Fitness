@@ -1,6 +1,7 @@
 {
-  "version": "11.13 Preview",
-  "download": "https://github.com/Hydroman-dot/VR-Fitness/raw/main/releases/V11.13/VR_Fitness_V11_13_Preview_Setup.bat",
+  "version": "11.14 Preview",
+  "download": "https://github.com/Hydroman-dot/VR-Fitness/raw/main/releases/V11.14/VR_Fitness_V11_14_Preview_Setup.bat",
   "project": "https://github.com/Hydroman-dot/VR-Fitness",
-  "notes": "V11.13: Einstellungen werden versionsunabhängig unter %LOCALAPPDATA%/VR Fitness gespeichert und aus älteren Installationen übernommen. Zusätzlich gibt es Deutsch/Englisch mit Systemsprache als Standard und manueller Auswahl."
+  "patch_notes": "https://github.com/Hydroman-dot/VR-Fitness/blob/main/releases/V11.14/PATCH_NOTES.md",
+  "notes": "V11.14: Update-Dialog mit Jetzt aktualisieren, Später erinnern und Diese Version überspringen. Updates werden nie erzwungen. / Update dialog with Update now, Remind later and Skip this version. Updates are never forced."
 }
