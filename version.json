@@ -1,5 +1,6 @@
 {
   "version": "11.12 Preview",
-  "download": "https://github.com/martinhesmer3-alt/VR-Fitness",
+  "download": "https://github.com/Hydroman-dot/VR-Fitness/releases/latest",
+  "project": "https://github.com/Hydroman-dot/VR-Fitness",
   "notes": "GitHub-Update-System eingerichtet. VR Fitness nutzt dieses Repository ab V11.12 als feste Update-Quelle und prüft beim Start still auf neue Versionen."
 }
