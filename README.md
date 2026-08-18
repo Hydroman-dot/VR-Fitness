@@ -7,6 +7,10 @@ VR Fitness ist ein lokales Windows-Tool zur Aufzeichnung und Auswertung von VR-F
 
 [Download V11.14 Preview](releases/V11.14/VR_Fitness_V11_14_Preview_Setup.bat) · [Patch Notes](releases/V11.14/PATCH_NOTES.md)
 
+> **AI-assisted development / KI-unterstützte Entwicklung**  
+> VR Fitness is developed with substantial assistance from AI tools, especially for implementation, refactoring, documentation and release preparation. The project is still reviewed and tested manually before releases.  
+> VR Fitness wird mit umfangreicher Unterstützung durch KI-Werkzeuge entwickelt, insbesondere bei Implementierung, Refactoring, Dokumentation und Release-Vorbereitung. Vor Veröffentlichungen wird das Projekt weiterhin manuell geprüft und getestet.
+
 ---
 
 ## Deutsch
@@ -32,6 +36,12 @@ Weitere Funktionen:
 - Deutsch und Englisch, automatisch über die Systemsprache oder manuell auswählbar
 - Einstellungen bleiben bei Versionswechseln erhalten
 - GitHub-basierte Update-Prüfung
+
+### Entwicklung mit KI-Unterstützung
+
+Dieses Projekt wird in erheblichem Umfang mit Unterstützung von KI-Werkzeugen entwickelt. Die KI wird unter anderem für Programmierung, Fehlersuche, Refactoring, Dokumentation, Übersetzungen und Release-Vorbereitung eingesetzt.
+
+Die Projektentscheidungen, Praxistests und die Freigabe neuer Versionen erfolgen weiterhin manuell. KI-generierter oder KI-überarbeiteter Code sollte deshalb wie jeder andere Code als Teil eines Preview-/Testprojekts betrachtet werden.
 
 ### Updates
 
@@ -97,6 +107,12 @@ Additional features:
 - German and English, selected automatically from the system language or manually
 - settings are preserved across version upgrades
 - GitHub-based update checking
+
+### AI-assisted development
+
+This project is developed with substantial assistance from AI tools. AI is used for implementation, debugging, refactoring, documentation, translations and release preparation.
+
+Project decisions, practical testing and release approval are still performed manually. AI-generated or AI-modified code should therefore be treated like any other code in a preview/testing project.
 
 ### Updates
 
