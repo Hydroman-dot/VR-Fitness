@@ -3,7 +3,7 @@ name: Rebuild V11.17 archives
 on:
   push:
     paths:
-      - '.upload/v11.17-final/**'
+      - '.upload/v11.17-final2/**'
   workflow_dispatch:
 
 permissions:
@@ -16,36 +16,91 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Rebuild and verify archives
+      - name: Rebuild and verify V11.17
         shell: bash
         run: |
           set -euo pipefail
 
           shopt -s nullglob
-          setup_chunks=(.upload/v11.17-final/setup_*.b64)
-          source_chunks=(.upload/v11.17-final/source_*.b64)
-
-          if [ "${#setup_chunks[@]}" -ne 11 ] || [ "${#source_chunks[@]}" -ne 4 ]; then
-            echo "Waiting for all chunks: setup=${#setup_chunks[@]}/11 source=${#source_chunks[@]}/4"
+          chunks=(.upload/v11.17-final2/src_*.b64)
+          if [ "${#chunks[@]}" -ne 7 ]; then
+            echo "Waiting for all source chunks: ${#chunks[@]}/7"
             exit 0
           fi
 
-          mkdir -p releases/V11.17
-
-          cat "${setup_chunks[@]}" | base64 -d > releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip
-          cat "${source_chunks[@]}" | base64 -d > releases/V11.17/vr_fitness_v11_17_source.zip
-
-          echo '37739ca389fa96df4ee386937d6820e20b72051c78a230dd1e42f9a20bf21276  releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip' | sha256sum -c -
+          mkdir -p releases/V11.17 .tmp-v1117
+          cat "${chunks[@]}" | base64 -d > releases/V11.17/vr_fitness_v11_17_source.zip
           echo '35fc8e23dcaf063377b64218f308cc56f297013e5a258f29f98642488436592e  releases/V11.17/vr_fitness_v11_17_source.zip' | sha256sum -c -
+          unzip -t releases/V11.17/vr_fitness_v11_17_source.zip
+          unzip -p releases/V11.17/vr_fitness_v11_17_source.zip vr_fitness_v11_17_preview.pyw > releases/V11.17/vr_fitness_v11_17_preview.pyw
+          echo '84dd2c1709081d4b1cac6fa5e6fdf7fa58dbb9e38140090e0a53784f331c83a9  releases/V11.17/vr_fitness_v11_17_preview.pyw' | sha256sum -c -
+
+          python - <<'PY'
+          from pathlib import Path
+          import base64, hashlib, re, zipfile
+
+          old_bat = Path('releases/V11.14/VR_Fitness_V11_14_Preview_Setup.bat').read_text(
+              encoding='utf-8-sig', errors='replace'
+          )
+          app = Path('releases/V11.17/vr_fitness_v11_17_preview.pyw').read_bytes()
+
+          old_marker = '__VRFITNESS_V1114_PAYLOAD__'
+          prefix, payload = old_bat.rsplit(old_marker, 1)
+          ps = base64.b64decode(re.sub(r'\s+', '', payload)).decode('utf-8-sig')
+          ps = ps.replace('$VersionName = "V11.14 Preview"', '$VersionName = "V11.17 Preview"')
+          ps = ps.replace('V11.14 Preview', 'V11.17 Preview')
+          ps = ps.replace('v11_14', 'v11_17').replace('v1114', 'v1117')
+
+          match = re.search(r"(?s)(\$AppBase64\s*=\s*@'\s*\n)(.*?)(\n'@)", ps)
+          if not match:
+              raise RuntimeError('AppBase64 block not found')
+
+          app64 = base64.b64encode(app).decode('ascii')
+          wrapped = '\n'.join(app64[i:i+76] for i in range(0, len(app64), 76))
+          ps = ps[:match.start(2)] + wrapped + ps[match.end(2):]
+
+          new_marker = '__VRFITNESS_V1117_PAYLOAD__'
+          prefix = prefix.replace('V11.14', 'V11.17').replace('v1114', 'v1117').replace(old_marker, new_marker)
+          ps64 = base64.b64encode(ps.encode('utf-8-sig')).decode('ascii')
+          installer = prefix + new_marker + '\n' + '\n'.join(
+              ps64[i:i+76] for i in range(0, len(ps64), 76)
+          ) + '\n'
+          installer_bytes = installer.replace('\n', '\r\n').encode('utf-8')
+
+          bat_path = Path('releases/V11.17/VR_Fitness_V11_17_Preview_Setup.bat')
+          bat_path.write_bytes(installer_bytes)
+
+          expected_bat = '30e5ab3324ae462c56ce83c29edf69d0604a99060a89f22afa2134e797c51541'
+          actual_bat = hashlib.sha256(installer_bytes).hexdigest()
+          if actual_bat != expected_bat:
+              raise RuntimeError(f'Installer SHA mismatch: {actual_bat}')
+          if b'.LastIndexOf($marker)' not in installer_bytes:
+              raise RuntimeError('LastIndexOf installer fix missing')
+
+          zip_path = Path('releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip')
+          info = zipfile.ZipInfo(
+              'VR_Fitness_V11_17_Preview_Setup.bat',
+              date_time=(2026, 9, 4, 11, 45, 22),
+          )
+          info.compress_type = zipfile.ZIP_DEFLATED
+          info.create_system = 3
+          info.external_attr = 2175008768
+          with zipfile.ZipFile(zip_path, 'w') as zf:
+              zf.writestr(info, installer_bytes)
+
+          expected_zip = '37739ca389fa96df4ee386937d6820e20b72051c78a230dd1e42f9a20bf21276'
+          actual_zip = hashlib.sha256(zip_path.read_bytes()).hexdigest()
+          if actual_zip != expected_zip:
+              raise RuntimeError(f'Setup ZIP SHA mismatch: {actual_zip}')
+          PY
 
           unzip -t releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip
-          unzip -t releases/V11.17/vr_fitness_v11_17_source.zip
 
-          rm -rf .upload/v11.17-final .upload/v11.17
+          rm -rf .upload/v11.17-final2 .upload/v11.17-final .upload/v11.17 .tmp-v1117
 
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A releases/V11.17 .upload
           git diff --cached --quiet && exit 0
-          git commit -m 'Rebuild and verify V11.17 release archives'
+          git commit -m 'Publish verified V11.17 release files'
           git push
