@@ -1,0 +1,51 @@
+name: Rebuild V11.17 archives
+
+on:
+  push:
+    paths:
+      - '.upload/v11.17-final/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rebuild and verify archives
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          shopt -s nullglob
+          setup_chunks=(.upload/v11.17-final/setup_*.b64)
+          source_chunks=(.upload/v11.17-final/source_*.b64)
+
+          if [ "${#setup_chunks[@]}" -ne 11 ] || [ "${#source_chunks[@]}" -ne 4 ]; then
+            echo "Waiting for all chunks: setup=${#setup_chunks[@]}/11 source=${#source_chunks[@]}/4"
+            exit 0
+          fi
+
+          mkdir -p releases/V11.17
+
+          cat "${setup_chunks[@]}" | base64 -d > releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip
+          cat "${source_chunks[@]}" | base64 -d > releases/V11.17/vr_fitness_v11_17_source.zip
+
+          echo '37739ca389fa96df4ee386937d6820e20b72051c78a230dd1e42f9a20bf21276  releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip' | sha256sum -c -
+          echo '35fc8e23dcaf063377b64218f308cc56f297013e5a258f29f98642488436592e  releases/V11.17/vr_fitness_v11_17_source.zip' | sha256sum -c -
+
+          unzip -t releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip
+          unzip -t releases/V11.17/vr_fitness_v11_17_source.zip
+
+          rm -rf .upload/v11.17-final .upload/v11.17
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A releases/V11.17 .upload
+          git diff --cached --quiet && exit 0
+          git commit -m 'Rebuild and verify V11.17 release archives'
+          git push
