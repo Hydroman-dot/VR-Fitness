@@ -3,13 +3,15 @@
 VR Fitness is a local Windows tool for recording and evaluating VR fitness sessions.  
 VR Fitness ist ein lokales Windows-Tool zur Aufzeichnung und Auswertung von VR-Fitness-Sessions.
 
-**Current PC version / Aktuelle PC-Version: V11.14 Preview**
+**Published PC version / Veröffentlichte PC-Version: V11.14 Preview**  
+**Current development PC version / Aktueller PC-Entwicklungsstand: V11.17 Preview**  
+**Current Android Companion / Aktueller Android-Companion: V1.6.2 Preview**
 
-[Download V11.14 Preview](releases/V11.14/VR_Fitness_V11_14_Preview_Setup.bat) · [Patch Notes](releases/V11.14/PATCH_NOTES.md)
+[Download published V11.14](releases/V11.14/VR_Fitness_V11_14_Preview_Setup.bat) · [V11.17 Patch Notes](releases/V11.17/PATCH_NOTES.md) · [Android V1.6.2 Patch Notes](android/releases/V1.6.2/PATCH_NOTES.md)
 
 > **AI-assisted development / KI-unterstützte Entwicklung**  
-> VR Fitness is developed with substantial assistance from AI tools, especially for implementation, refactoring, documentation and release preparation. The project is still reviewed and tested manually before releases.  
-> VR Fitness wird mit umfangreicher Unterstützung durch KI-Werkzeuge entwickelt, insbesondere bei Implementierung, Refactoring, Dokumentation und Release-Vorbereitung. Vor Veröffentlichungen wird das Projekt weiterhin manuell geprüft und getestet.
+> VR Fitness is developed with substantial assistance from AI tools, especially for implementation, debugging, refactoring, documentation, translations and release preparation. Project decisions, practical testing and release approval are still performed manually.  
+> VR Fitness wird mit umfangreicher Unterstützung durch KI-Werkzeuge entwickelt, insbesondere bei Implementierung, Fehlersuche, Refactoring, Dokumentation, Übersetzungen und Release-Vorbereitung. Projektentscheidungen, Praxistests und die Freigabe neuer Versionen erfolgen weiterhin manuell.
 
 ---
 
@@ -17,70 +19,82 @@ VR Fitness ist ein lokales Windows-Tool zur Aufzeichnung und Auswertung von VR-F
 
 ### Funktionen
 
-Unterstützte Bewegungsquellen:
+**Bewegungsquellen**
 - VRTI
 - FitOSC
 
-Unterstützte Pulsquellen:
+**Pulsquellen**
 - BluetoothHeartrate über VRCOSC
-- Pulsoid
+- Pulsoid über Access-Token
+- Pulsoid Widget URL (experimentell, ohne separaten API-Token in VR Fitness)
 - HypeRate
 
-Zusätzlich kann ein Android-Companion Health-Connect-Daten mit VR Fitness austauschen.
-
-Weitere Funktionen:
+**Sessions und Auswertung**
 - Session-Aufzeichnung mit Distanz, Schritten, Zeit und Puls
-- Session-Historie, Diagramme und Auswertungen
+- Session-Historie, Letzte Sessions, Diagramme und Auswertungen
 - PDF-/CSV-/JSON-Ausgaben
-- Health-Connect-Anbindung über den Android-Companion
-- Deutsch und Englisch, automatisch über die Systemsprache oder manuell auswählbar
-- Einstellungen bleiben bei Versionswechseln erhalten
-- GitHub-basierte Update-Prüfung
+- Pulszonen und Datenqualitätsprüfung
+- ab V11.17: geschätzte aktive kcal live auf der Hauptseite
+- ab V11.17: kcal in Letzte Sessions, Session-Historie und 7-Tage-Zusammenfassung
 
-### Entwicklung mit KI-Unterstützung
+### Health Connect
 
-Dieses Projekt wird in erheblichem Umfang mit Unterstützung von KI-Werkzeugen entwickelt. Die KI wird unter anderem für Programmierung, Fehlersuche, Refactoring, Dokumentation, Übersetzungen und Release-Vorbereitung eingesetzt.
+Der Android-Companion verbindet VR Fitness über das lokale Netzwerk mit Android Health Connect.
 
-Die Projektentscheidungen, Praxistests und die Freigabe neuer Versionen erfolgen weiterhin manuell. KI-generierter oder KI-überarbeiteter Code sollte deshalb wie jeder andere Code als Teil eines Preview-/Testprojekts betrachtet werden.
+Aktueller Funktionsstand:
+- VR-Fitness-Sessions nach Health Connect schreiben
+- Herzfrequenz, Distanz, optional Schritte und geschätzte aktive kcal übertragen
+- Health-Connect-Schritte lesen
+- aktuelles Gewicht lesen und optional für die kcal-Schätzung verwenden
+- letzten verfügbaren SpO₂-Wert lesen
+- Übertragungslog für erfolgreiche/fehlgeschlagene Health-Connect-Schreibvorgänge
+- PC-Empfänger auf ein freigegebenes WLAN beschränken
+
+Die kcal-Werte sind **Schätzwerte** und keine medizinischen Messwerte.
 
 ### Updates
 
-Ab V11.12 nutzt VR Fitness dieses Repository als feste Update-Quelle. Die Datei `version.json` enthält die aktuell freigegebene Version, den Downloadpfad und eine kurze Änderungsbeschreibung.
-
-Ab V11.14 entscheidet immer der Nutzer selbst, wie mit einem Update umgegangen wird:
+VR Fitness verwendet `version.json` in diesem Repository als feste Update-Quelle. Seit V11.14 entscheidet der Nutzer selbst:
 - **Jetzt aktualisieren**
 - **Später erinnern**
 - **Diese Version überspringen**
 
-Updates werden nicht erzwungen. Eine übersprungene Version wird bei automatischen Prüfungen nicht erneut angeboten; eine neuere Version wird wieder normal angezeigt. Unter **Einstellungen → Diagnose → Update prüfen** kann jederzeit manuell geprüft werden.
+Updates werden nicht erzwungen.
+
+`version.json` bleibt bewusst auf der zuletzt vollständig veröffentlichten PC-Version, bis die Dateien einer neueren Version im Release-Ordner vorhanden sind.
 
 ### Datenspeicherung
 
-Fitness-, Session- und Programmeinstellungen werden lokal auf dem jeweiligen PC gespeichert. Die Konfiguration liegt versionsunabhängig unter `%LOCALAPPDATA%\VR Fitness` und wird bei Updates weiterverwendet.
+Fitness-, Session- und Programmeinstellungen werden lokal gespeichert. Die Konfiguration liegt versionsunabhängig unter:
 
-Onlinezugriffe erfolgen nur für Funktionen, die sie benötigen, insbesondere:
-- GitHub-Updateprüfung
-- Pulsoid oder HypeRate, falls ausgewählt
-- lokale Kommunikation mit dem Android-Companion
+`%LOCALAPPDATA%\VR Fitness`
 
-### Android Companion
-
-Der Android-Companion befindet sich ebenfalls noch im Testbetrieb. Er kann Daten mit Health Connect austauschen und über das lokale Netzwerk mit VR Fitness kommunizieren. Eine Play-Store-Veröffentlichung ist derzeit nicht Bestandteil der Distribution.
+Onlinezugriffe erfolgen nur für Funktionen, die sie benötigen, insbesondere GitHub-Updateprüfung, Pulsoid/HypeRate und die lokale Kommunikation mit dem Android-Companion.
 
 ### Releases und Patchnotes
 
-Neue PC-Versionen werden unter `releases/Vxx.xx/` abgelegt. Jede Version erhält eigene `PATCH_NOTES.md` mit den Änderungen der jeweiligen Version.
+PC-Versionen liegen unter:
 
-Der Release-Ablauf ist:
-1. neue Version bauen
-2. Version prüfen/testen
+`releases/Vxx.xx/`
+
+Android-Versionen liegen unter:
+
+`android/releases/Vx.x.x/`
+
+Aktuell vorbereitet:
+- `releases/V11.17/PATCH_NOTES.md`
+- `android/releases/V1.6.2/PATCH_NOTES.md`
+
+Der Release-Ablauf bleibt:
+1. Version bauen
+2. prüfen/testen
 3. Patchnotes erstellen
-4. Dateien unter `releases/Vxx.xx/` ablegen
-5. `version.json` auf die freigegebene Version aktualisieren
+4. Dateien im Versionsordner ablegen
+5. `version.json` auf die freigegebene PC-Version aktualisieren
 
-### Status
+### Nächster PC-Ausbau
 
-VR Fitness befindet sich weiterhin im Preview-/Testbetrieb. Insbesondere neue Datenquellen und Android-/Health-Connect-Funktionen sollten vor breiter Nutzung getestet werden.
+Für die nächste PC-Version ist ein strukturierter Diagnosefilter vorgesehen: Quellen wie VRCOSC, VRTI, FitOSC, Pulsoid und Health Connect sowie Filter nach Info/Warnung/Fehler und Textsuche.
 
 ---
 
@@ -88,70 +102,80 @@ VR Fitness befindet sich weiterhin im Preview-/Testbetrieb. Insbesondere neue Da
 
 ### Features
 
-Supported movement sources:
+**Movement sources**
 - VRTI
 - FitOSC
 
-Supported heart-rate sources:
+**Heart-rate sources**
 - BluetoothHeartrate via VRCOSC
-- Pulsoid
+- Pulsoid via access token
+- Pulsoid Widget URL (experimental, without a separate API token stored in VR Fitness)
 - HypeRate
 
-An Android companion can also exchange Health Connect data with VR Fitness.
-
-Additional features:
+**Sessions and analysis**
 - session recording with distance, steps, time and heart rate
-- session history, charts and statistics
-- PDF, CSV and JSON exports
-- Health Connect integration through the Android companion
-- German and English, selected automatically from the system language or manually
-- settings are preserved across version upgrades
-- GitHub-based update checking
+- Recent Sessions, session history, charts and statistics
+- PDF, CSV and JSON outputs
+- heart-rate zones and data-quality checks
+- V11.17 development build: live estimated active kcal on the main screen
+- V11.17 development build: kcal in Recent Sessions, session history and 7-day summary
 
-### AI-assisted development
+### Health Connect
 
-This project is developed with substantial assistance from AI tools. AI is used for implementation, debugging, refactoring, documentation, translations and release preparation.
+The Android companion links VR Fitness with Android Health Connect over the local network.
 
-Project decisions, practical testing and release approval are still performed manually. AI-generated or AI-modified code should therefore be treated like any other code in a preview/testing project.
+Current feature set:
+- write VR Fitness sessions to Health Connect
+- write heart rate, distance, optional steps and estimated active kcal
+- read Health Connect steps
+- read current body weight and optionally use it for kcal estimation
+- read the latest available SpO₂ value
+- transfer log for successful/failed Health Connect writes
+- restrict the PC receiver to an approved Wi-Fi network
+
+Calorie values are **estimates**, not medical measurements.
 
 ### Updates
 
-Since V11.12, VR Fitness uses this repository as its fixed update source. The `version.json` file contains the currently released version, download path and a short change summary.
-
-Starting with V11.14, the user always decides what to do with an available update:
+VR Fitness uses `version.json` in this repository as its update source. Since V11.14 the user decides what to do with an available update:
 - **Update now**
 - **Remind me later**
 - **Skip this version**
 
-Updates are never forced. A skipped version is not shown again during automatic checks, while a newer version will be offered normally. A manual check is always available under **Settings → Diagnostics → Check for updates**.
+Updates are never forced.
+
+`version.json` intentionally remains on the latest fully published PC version until the files for a newer version are present in its release folder.
 
 ### Data storage
 
-Fitness data, sessions and application settings are stored locally on the PC. Configuration is stored independently of the installed version under `%LOCALAPPDATA%\VR Fitness` and is reused after upgrades.
+Fitness data, sessions and settings are stored locally. Version-independent configuration is stored under:
 
-Online access is only used for features that require it, especially:
-- GitHub update checking
-- Pulsoid or HypeRate when selected
-- local communication with the Android companion
+`%LOCALAPPDATA%\VR Fitness`
 
-### Android Companion
-
-The Android companion is also still in testing. It can exchange data with Health Connect and communicate with VR Fitness over the local network. A Google Play release is currently not part of the distribution.
+Online access is only used for features that require it, especially GitHub update checks, Pulsoid/HypeRate and local communication with the Android companion.
 
 ### Releases and patch notes
 
-New PC versions are stored under `releases/Vxx.xx/`. Every version gets its own `PATCH_NOTES.md` containing the changes for that release.
+PC versions:
+`releases/Vxx.xx/`
+
+Android versions:
+`android/releases/Vx.x.x/`
+
+Currently prepared:
+- `releases/V11.17/PATCH_NOTES.md`
+- `android/releases/V1.6.2/PATCH_NOTES.md`
 
 Release workflow:
-1. build the new version
-2. test and verify it
+1. build
+2. test/verify
 3. write patch notes
-4. place the files under `releases/Vxx.xx/`
-5. update `version.json` to publish the release
+4. place files in the version folder
+5. update `version.json` for the published PC release
 
-### Status
+### Next PC development step
 
-VR Fitness is still in preview/testing. New data sources and Android/Health Connect functionality should be tested carefully before wider distribution.
+The next PC release is planned to add structured diagnostic filtering by source (VRCOSC, VRTI, FitOSC, Pulsoid, Health Connect), severity (Info/Warning/Error) and text search.
 
 ---
 
