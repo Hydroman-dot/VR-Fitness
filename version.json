@@ -1,7 +1,7 @@
 {
-  "version": "11.14 Preview",
-  "download": "https://github.com/Hydroman-dot/VR-Fitness/raw/main/releases/V11.14/VR_Fitness_V11_14_Preview_Setup.bat",
+  "version": "11.17 Preview",
+  "download": "https://github.com/Hydroman-dot/VR-Fitness/raw/main/releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip",
   "project": "https://github.com/Hydroman-dot/VR-Fitness",
-  "patch_notes": "https://github.com/Hydroman-dot/VR-Fitness/blob/main/releases/V11.14/PATCH_NOTES.md",
-  "notes": "V11.14: Update-Dialog mit Jetzt aktualisieren, Später erinnern und Diese Version überspringen. Updates werden nie erzwungen. / Update dialog with Update now, Remind later and Skip this version. Updates are never forced."
+  "patch_notes": "https://github.com/Hydroman-dot/VR-Fitness/blob/main/releases/V11.17/PATCH_NOTES.md",
+  "notes": "V11.17: Live aktive kcal auf der Hauptseite, kcal in Letzte Sessions, Historie und 7-Tage-Auswertung sowie Health-Connect-Weiterentwicklung. / V11.17: live active kcal on the main screen, kcal in Recent Sessions, history and 7-day summaries, plus Health Connect improvements."
 }
