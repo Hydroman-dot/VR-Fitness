@@ -47,3 +47,11 @@ Current patch notes:
 The latest V1.6.2 source package also contains the build fix for the reported `LayoutParams` and `ActivityCompat` compiler errors.
 
 A current APK should only be published after a successful Android Studio build and real-device test.
+
+## Verified release files / Geprüfte Release-Dateien
+
+- [V1.6.2 source ZIP](releases/V1.6.2/VR_Fitness_Health_Companion_V1_6_2_WifiGuard_FIXED.zip)
+- [V1.6.2 debug APK](releases/V1.6.2/VR_Fitness_Companion_V1_6_2_debug.apk)
+- [SHA-256 checksums](releases/V1.6.2/SHA256SUMS.txt)
+
+The APK is an existing local Android Studio debug build (versionName 1.6.2, versionCode 8, de.vrfitness.companion according to build metadata). Archive integrity was checked; installation and device behavior were not tested during publication. / Vorhandener lokaler Debug-Build; ZIP-Integrität geprüft, kein Gerätetest bei dieser Veröffentlichung.

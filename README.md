@@ -201,3 +201,9 @@ VR Fitness remains a preview/testing project. New Health Connect, Android and ca
 
 This project is licensed under the MIT License. See `LICENSE`.  
 Dieses Projekt steht unter der MIT-Lizenz. Siehe `LICENSE`.
+
+## Verified release files / Geprüfte Release-Dateien
+
+PC V11.17: Installer and application match the original SHA-256 values. ZIP archives were repacked from those verified bytes; their new hashes are in [SHA256SUMS.txt](releases/V11.17/SHA256SUMS.txt). / Installer und Programmcode entsprechen den Original-Hashes; die neu gepackten ZIPs haben eigene Prüfsummen.
+
+Android V1.6.2: [source and debug APK](android/releases/V1.6.2/). The APK is an existing local debug build, not a production release; no device test was performed as part of publication.
