@@ -3,9 +3,9 @@
 VR Fitness is a local Windows tool for recording and evaluating VR fitness sessions.  
 VR Fitness ist ein lokales Windows-Tool zur Aufzeichnung und Auswertung von VR-Fitness-Sessions.
 
-**Current PC version / Aktuelle PC-Version: V11.17 Preview**
+**Current PC version / Aktuelle PC-Version: V11.18 Preview**
 
-[Download V11.17 Setup ZIP](releases/V11.17/VR_Fitness_V11_17_Preview_Setup.zip) · [Source ZIP](releases/V11.17/vr_fitness_v11_17_source.zip) · [Patch Notes](releases/V11.17/PATCH_NOTES.md)
+[Download V11.18 Setup ZIP](releases/V11.18/VR_Fitness_V11_18_Preview_Setup.zip) · [Source ZIP](releases/V11.18/vr_fitness_v11_18_source.zip) · [Patch Notes](releases/V11.18/PATCH_NOTES.md)
 
 **Current Android Companion / Aktueller Android Companion: V1.6.2 Preview**
 
@@ -83,9 +83,6 @@ Onlinezugriffe erfolgen nur für benötigte Funktionen, insbesondere:
 ### Nächste Entwicklungsschritte
 
 Geplant für kommende PC-Versionen:
-- Diagnosefilter nach Quelle, z. B. VRCOSC, VRTI, FitOSC, Pulsoid, HypeRate, Health Connect, Session, Update und System
-- Filter nach Info, Warnung, Fehler und Debug
-- Textsuche im Diagnose-Log
 - später verbesserte kcal-Berechnung mit Ruhephasen
 - mittelfristig eine richtige Windows-EXE anstelle der BAT-basierten Installation
 
@@ -174,9 +171,6 @@ Online access is only used where needed, especially:
 ### Next development steps
 
 Planned for future PC versions:
-- diagnostic filtering by source such as VRCOSC, VRTI, FitOSC, Pulsoid, HypeRate, Health Connect, Session, Update and System
-- filtering by Info, Warning, Error and Debug
-- text search in diagnostic logs
 - improved calorie estimation with rest-phase handling
 - eventually a proper Windows EXE instead of BAT-based installation
 
@@ -204,6 +198,16 @@ Dieses Projekt steht unter der MIT-Lizenz. Siehe `LICENSE`.
 
 ## Verified release files / Geprüfte Release-Dateien
 
-PC V11.17: Installer and application match the original SHA-256 values. ZIP archives were repacked from those verified bytes; their new hashes are in [SHA256SUMS.txt](releases/V11.17/SHA256SUMS.txt). / Installer und Programmcode entsprechen den Original-Hashes; die neu gepackten ZIPs haben eigene Prüfsummen.
+PC V11.18: Source and installer archive checksums are in [SHA256SUMS.txt](releases/V11.18/SHA256SUMS.txt). / Prüfsummen für Programmcode, Installer und ZIPs.
 
 Android V1.6.2: [source and debug APK](android/releases/V1.6.2/). The APK is an existing local debug build, not a production release; no device test was performed as part of publication.
+
+## Discord Rich Presence (V11.18)
+
+Unter **Einstellungen → Discord** können Session-Schritte, Distanz, geschätzte kcal, Zeit und optional Puls freigegeben werden. Discord und Pulsanzeige sind standardmäßig aus. Erforderlich sind Discord Desktop und eine öffentliche Application-ID einer eigenen Application namens VR Fitness. Das Einstellungsfenster enthält den Link zur Einrichtung; Token oder Client Secret werden nicht benötigt. Aktualisierung alle 15 Sekunden, Entfernen beim Sessionende standardmäßig aktiv. Ein Logo kann über einen hochgeladenen Assetnamen gewählt werden.
+
+The Discord tab shares selected session metrics through the desktop client. Sharing and heart rate default to off. Supply your own public Application ID, select metrics and save. No bot token or client secret is required. Diagnostics include source, severity and text filters.
+
+[Einrichtung, Prüfung und bekannte Grenzen / Setup, validation and limitations](releases/V11.18/PATCH_NOTES.md). Live Discord-profile validation is pending an Application ID.
+
+Developer checks: `python -m unittest discover -s tests -v`; Windows GUI smoke check: `python tests/gui_smoke_v1118.py`; rebuild archives: `python tools/build_v1118.py`.
