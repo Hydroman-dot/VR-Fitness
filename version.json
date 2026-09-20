@@ -3,5 +3,5 @@
   "download": "https://github.com/Hydroman-dot/VR-Fitness/raw/main/releases/V11.18/VR_Fitness_V11_18_Preview_Setup.zip",
   "project": "https://github.com/Hydroman-dot/VR-Fitness",
   "patch_notes": "https://github.com/Hydroman-dot/VR-Fitness/blob/main/releases/V11.18/PATCH_NOTES.md",
-  "notes": "V11.18: Optionale Discord Rich Presence mit privaten Voreinstellungen und Diagnosefiltern. Eigene Application-ID erforderlich. / Optional Discord Rich Presence with private defaults and diagnostic filters. Your own Application ID is required."
+  "notes": "V11.18: Optionale Discord Rich Presence mit voreingestellter Application-ID, privaten Voreinstellungen und Diagnosefiltern. / Optional Discord Rich Presence with preconfigured Application ID, private defaults and diagnostic filters."
 }

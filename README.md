@@ -204,10 +204,10 @@ Android V1.6.2: [source and debug APK](android/releases/V1.6.2/). The APK is an 
 
 ## Discord Rich Presence (V11.18)
 
-Unter **Einstellungen → Discord** können Session-Schritte, Distanz, geschätzte kcal, Zeit und optional Puls freigegeben werden. Discord und Pulsanzeige sind standardmäßig aus. Erforderlich sind Discord Desktop und eine öffentliche Application-ID einer eigenen Application namens VR Fitness. Das Einstellungsfenster enthält den Link zur Einrichtung; Token oder Client Secret werden nicht benötigt. Aktualisierung alle 15 Sekunden, Entfernen beim Sessionende standardmäßig aktiv. Ein Logo kann über einen hochgeladenen Assetnamen gewählt werden.
+Unter **Einstellungen → Discord** können Session-Schritte, Distanz, geschätzte kcal, Zeit und optional Puls freigegeben werden. Discord und Pulsanzeige sind standardmäßig aus. Discord Desktop ist erforderlich; die öffentliche VR-Fitness-Application-ID `1551173400385294349` ist voreingestellt. Token oder Client Secret werden nicht benötigt. Aktualisierung alle 15 Sekunden, Entfernen beim Sessionende standardmäßig aktiv. Ein Logo kann über einen hochgeladenen Assetnamen gewählt werden.
 
-The Discord tab shares selected session metrics through the desktop client. Sharing and heart rate default to off. Supply your own public Application ID, select metrics and save. No bot token or client secret is required. Diagnostics include source, severity and text filters.
+The Discord tab shares selected session metrics through the desktop client. Sharing and heart rate default to off. The VR Fitness Application ID `1551173400385294349` is preconfigured; select metrics, enable sharing and save. No bot token or client secret is required. Diagnostics include source, severity and text filters.
 
-[Einrichtung, Prüfung und bekannte Grenzen / Setup, validation and limitations](releases/V11.18/PATCH_NOTES.md). Live Discord-profile validation is pending an Application ID.
+[Einrichtung, Prüfung und bekannte Grenzen / Setup, validation and limitations](releases/V11.18/PATCH_NOTES.md). Live Discord-profile validation remains pending.
 
 Developer checks: `python -m unittest discover -s tests -v`; Windows GUI smoke check: `python tests/gui_smoke_v1118.py`; rebuild archives: `python tools/build_v1118.py`.

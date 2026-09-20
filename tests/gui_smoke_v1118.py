@@ -22,6 +22,7 @@ with tempfile.TemporaryDirectory() as folder, patch.dict(os.environ, {'LOCALAPPD
             app.show_settings()
             app.settings_window.withdraw()
             root.update()
+            assert app.discord_vars['discord_application_id'].get() == '1551173400385294349'
             assert not app.discord_vars['discord_enabled'].get()
             assert not app.discord_vars['discord_show_pulse'].get()
             app.discord_vars['discord_application_id'].set('123456789012345678')

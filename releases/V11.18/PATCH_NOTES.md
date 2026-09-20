@@ -13,13 +13,13 @@
 
 ### Einrichtung
 
-1. Im [Discord Developer Portal](https://discord.com/developers/applications) eine Application mit dem Namen **VR Fitness** erstellen.
-2. Die öffentliche **Application ID** unter **Einstellungen → Discord** eintragen. Kein Bot-Token oder Client Secret eingeben.
+1. V11.18 öffnen und **Einstellungen → Discord** wählen.
+2. Die öffentliche VR-Fitness-Application-ID **1551173400385294349** ist voreingestellt. Eine eigene ID kann weiterhin eingetragen werden. Kein Bot-Token oder Client Secret nötig.
 3. Gewünschte Werte auswählen, Discord-Aktivität aktivieren und **Speichern** drücken. Puls muss ausdrücklich eingeschaltet werden.
 4. Discord Desktop öffnen und eine Session starten. Die Anzeige setzt erlaubte Aktivitätsfreigabe in Discord voraus.
 5. Optional ein Logo bei dieser Application hochladen und dessen Assetnamen eintragen.
 
-Eine gemeinsame Application-ID ist noch nicht vorhanden; deshalb ist keine fremde oder erfundene ID voreingestellt. Ohne ID bleibt die Funktion deaktiviert. Eine eigene Application bestimmt den in Discord angezeigten Anwendungsnamen.
+Die vom Projektinhaber bereitgestellte Application-ID ist enthalten. Discord und Puls bleiben standardmäßig ausgeschaltet. Bereits gespeicherte eigene IDs werden nicht überschrieben.
 
 ### Prüfung und Grenzen
 
@@ -33,6 +33,6 @@ Eine gemeinsame Application-ID ist noch nicht vorhanden; deshalb ist keine fremd
 
 V11.18 adds optional Discord Rich Presence with individually selected session heart rate, steps, distance, estimated calories and elapsed time. Discord sharing and heart-rate sharing default to off. Settings are saved explicitly; no names, notes, tokens or raw samples are shared. Updates run every 15 seconds outside the UI thread, with automatic reconnection and prompt clearing at session end, disable and exit. Stale heart rate and related live calorie estimates are omitted.
 
-Diagnostics now support source, severity and text filters. A registered Discord Application ID and the desktop client are required; no ID or logo asset is fabricated. An optional uploaded logo asset key can be configured. Ten automated checks and an isolated Tk smoke check pass. Real Discord-profile behavior and clean-machine installation still require manual validation. Android and calorie-estimation logic are unchanged.
+Diagnostics now support source, severity and text filters. The public VR Fitness Application ID 1551173400385294349 is preconfigured; the desktop client is required. An optional uploaded logo asset key can be configured. Ten automated checks and an isolated Tk smoke check pass. Real Discord-profile behavior and clean-machine installation still require manual validation. Android and calorie-estimation logic are unchanged.
 
 Protocol reference: [Discord RPC documentation](https://github.com/discord/discord-rpc/blob/master/documentation/hard-mode.md).

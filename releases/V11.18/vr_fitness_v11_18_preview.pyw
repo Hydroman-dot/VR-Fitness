@@ -1747,7 +1747,7 @@ def steamvr_manifest_content(pythonw_path, app_path, icon_path):
 # Standalone Discord RPC integration; no additional package required.
 DISCORD_DEFAULTS = {
     "discord_enabled": False,
-    "discord_application_id": "",
+    "discord_application_id": "1551173400385294349",
     "discord_show_pulse": False,
     "discord_show_steps": True,
     "discord_show_distance": True,
@@ -3169,7 +3169,7 @@ class App:
         ttk.Entry(discord_tab, textvariable=self.discord_vars["discord_application_id"], width=35).pack(anchor="w", padx=12)
         ttk.Label(discord_tab, text="Optional: Name des hochgeladenen Logo-Assets / Uploaded logo asset key:").pack(anchor="w", padx=12, pady=(8, 0))
         ttk.Entry(discord_tab, textvariable=self.discord_vars["discord_image_key"], width=35).pack(anchor="w", padx=12)
-        ttk.Label(discord_tab, text="Einrichtung: Im Discord Developer Portal eine Application namens VR Fitness erstellen, deren Application-ID hier eintragen und speichern. Discord Desktop muss laufen. Kein Bot/Secret nötig. / Create an application named VR Fitness, enter its Application ID and save. Desktop client required; no bot or secret needed.", wraplength=720).pack(anchor="w", padx=12, pady=8)
+        ttk.Label(discord_tab, text="Die VR-Fitness-Application-ID ist voreingestellt. Discord Desktop öffnen, gewünschte Werte wählen, aktivieren und speichern. Kein Bot/Secret nötig. / VR Fitness Application ID is preconfigured. Open Discord Desktop, select values, enable and save. No bot or secret needed.", wraplength=720).pack(anchor="w", padx=12, pady=8)
         ttk.Button(discord_tab, text="Discord Developer Portal öffnen / Open", command=lambda: webbrowser.open("https://discord.com/developers/applications")).pack(anchor="w", padx=12)
         ttk.Label(discord_tab, textvariable=self.discord_status).pack(anchor="w", padx=12, pady=8)
         ttk.Label(discord_tab, text="Änderungen werden mit Speichern übernommen. Aktualisierung alle 15 s. / Save to apply. Updates every 15 s.").pack(anchor="w", padx=12)
