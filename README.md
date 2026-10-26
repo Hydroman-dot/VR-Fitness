@@ -1,5 +1,11 @@
 # VR Fitness
 
+## Weiterentwicklung / Continued development
+
+Die PC-Funktionen werden in [VRC HydroLink](https://github.com/Hydroman-dot/VRC-HydroLink) als integriertes Modul weiterentwickelt. Dieses Einzelprojekt bleibt als historischer Stand erhalten und ist zur Archivierung vorgesehen. Bestehende Downloads und Anleitungen beziehen sich auf diesen alten Stand. Offene Unterschiede und Hardware-Abnahmen: [HydroLink-Funktionsvergleich](https://github.com/Hydroman-dot/VRC-HydroLink/blob/main/docs/FEATURE-PARITY.md).
+
+PC development continues in VRC HydroLink. This standalone project is retained as a historical reference and is scheduled for archival. Existing downloads and instructions describe the legacy version; full feature parity and hardware validation are not claimed.
+
 VR Fitness is a local Windows tool for recording and evaluating VR fitness sessions.  
 VR Fitness ist ein lokales Windows-Tool zur Aufzeichnung und Auswertung von VR-Fitness-Sessions.
 
@@ -9,9 +15,12 @@ VR Fitness ist ein lokales Windows-Tool zur Aufzeichnung und Auswertung von VR-F
 
 **Current Android Companion / Aktueller Android Companion: V1.6.2 Preview**
 
-> **AI-assisted development / KI-unterstützte Entwicklung**  
-> VR Fitness is developed with substantial assistance from AI tools, especially for implementation, refactoring, documentation and release preparation. The project is still reviewed and tested manually before releases.  
-> VR Fitness wird mit umfangreicher Unterstützung durch KI-Werkzeuge entwickelt, insbesondere bei Implementierung, Refactoring, Dokumentation und Release-Vorbereitung. Vor Veröffentlichungen wird das Projekt weiterhin manuell geprüft und getestet.
+
+## KI-Hinweis / AI disclosure
+
+Dieses Projekt wird mit Unterstützung künstlicher Intelligenz entwickelt und dokumentiert. Der Hinweis beschreibt die Entwicklung und bedeutet nicht, dass das Programm selbst KI-Funktionen verwendet.
+
+This project is developed and documented with assistance from artificial intelligence. This disclosure describes the development process; it does not imply that the software itself uses AI features.
 
 ---
 
@@ -80,7 +89,7 @@ Onlinezugriffe erfolgen nur für benötigte Funktionen, insbesondere:
 - Pulsoid oder HypeRate, falls ausgewählt
 - lokale Kommunikation mit dem Android-Companion
 
-### Nächste Entwicklungsschritte
+### Frühere Planung (Weiterentwicklung in HydroLink)
 
 Geplant für kommende PC-Versionen:
 - Diagnosefilter nach Quelle, z. B. VRCOSC, VRTI, FitOSC, Pulsoid, HypeRate, Health Connect, Session, Update und System
@@ -171,7 +180,7 @@ Online access is only used where needed, especially:
 - Pulsoid or HypeRate when selected
 - local communication with the Android companion
 
-### Next development steps
+### Historical roadmap (continued in HydroLink)
 
 Planned for future PC versions:
 - diagnostic filtering by source such as VRCOSC, VRTI, FitOSC, Pulsoid, HypeRate, Health Connect, Session, Update and System
